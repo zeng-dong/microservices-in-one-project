@@ -25,6 +25,7 @@ namespace GloboTicket.Web.Controllers
         {
             var domain = $"{ HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
             _basketService.SetBaseUri(domain);
+            ViewBag.Domain = domain;
 
             var basketLines = await _basketService.GetLinesForBasket(Request.Cookies.GetCurrentBasketId(settings));
             var lineViewModels = basketLines.Select(bl => new BasketLineViewModel
@@ -46,6 +47,7 @@ namespace GloboTicket.Web.Controllers
         {
             var domain = $"{ HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
             _basketService.SetBaseUri(domain);
+            ViewBag.Domain = domain;
 
             var basketId = Request.Cookies.GetCurrentBasketId(settings);
             var newLine = await _basketService.AddToBasket(basketId, basketLine);
@@ -60,6 +62,7 @@ namespace GloboTicket.Web.Controllers
         {
             var domain = $"{ HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
             _basketService.SetBaseUri(domain);
+            ViewBag.Domain = domain;
 
             var basketId = Request.Cookies.GetCurrentBasketId(settings);
             await _basketService.UpdateLine(basketId, basketLineUpdate);
@@ -70,6 +73,7 @@ namespace GloboTicket.Web.Controllers
         {
             var domain = $"{ HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
             _basketService.SetBaseUri(domain);
+            ViewBag.Domain = domain;
 
             var basketId = Request.Cookies.GetCurrentBasketId(settings);
             await _basketService.RemoveLine(basketId, lineId);
